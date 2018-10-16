@@ -1,6 +1,8 @@
 {
-  "name": "week 9",
-  "description": "Week 9 Practice",
+  "name": "Week9",
+  "version": "1.0.0",
+  "description": "Change a bar and line graph by clicking  buttons. ",
   "main": "index.html",
-  "dependencies": {}
+  "dependencies": {},
+  "keywords": []
 }
