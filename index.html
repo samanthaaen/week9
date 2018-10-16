@@ -1,10 +1,56 @@
 <html>
-  <body>
-    <img src="https://www.viennasightseeing.at/application/files/6414/9865/1215/4_Schonbrunn-10_c_VIENNA_SIGHTSEEING_TOURS_Bernhard_Luck.jpg" style='max-width: 100%;'>
-    <br> Yo World. This is <b>Vienna</b>
-    Is Vienna beautiful?
-    <br> <button style='border-radius: 4px; border: 1px solid black; background-color: #ddd; padding: 4px 16px; margin: 6px 0'> yes </button>
-    <br> <button style='border-radius: 4px; border: 1px solid black; background-color: #ddd; padding: 4px 16px;'> definitely :) </button>
-    <br> <h2> I love my teammates <3, especially the mo li hua </h2>
-    </body>
+
+<head>
+	<title>Single Vue Charts</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<style>
+		body {
+			font-family: "Lato";
+		}
+	</style>
+</head>
+
+<body>
+	<img src="https://www.viennasightseeing.at/application/files/6414/9865/1215/4_Schonbrunn-10_c_VIENNA_SIGHTSEEING_TOURS_Bernhard_Luck.jpg"
+	 style='max-width: 100%;'>
+	<br> Yo World. This is <b>Vienna</b> Is Vienna beautiful?
+	<br> <button style='border-radius: 4px; border: 1px solid black; background-color: #ddd; padding: 4px 16px; margin: 6px 0'> yes </button>
+	<br> <button style='border-radius: 4px; border: 1px solid black; background-color: #ddd; padding: 4px 16px;'> definitely :) </button>
+	<br>
+	<h2> I love my teammates
+		<3, especially the mo li hua </h2>
+
+			<div id='app'>
+				<pie-chart :data="charts.line"></pie-chart>
+			</div>
+
+			<script src="https://unpkg.com/vue"></script>
+			<script src="https://unpkg.com/chart.js@2.7.2/dist/Chart.bundle.js"></script>
+			<script src="https://unpkg.com/vue-chartkick@0.4.0"></script>
+			<script src="https://gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+			<script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+			<script>
+				var db = firebase.initializeApp({
+        databaseURL: 'https://yt-bt3103.firebaseio.com'
+      }).database()
+      var chartsRef = db.ref('charts')
+      new Vue({
+        el: '#app',
+        data: {
+          newTodoText: '',
+          username:'anonymous',
+         	localBarData: [["Jan", 4], ["Feb", 2], ["Mar", 10], ["Apr", 5], ["May", 3]],
+          localLineData: [["Sun", 32], ["Mon", 46], ["Tue", 28]]
+        },
+        firebase: {
+        charts: {
+            source: db.ref('charts'),
+          // optionally bind as an object
+            asObject: true,
+       }},
+      })
+
+			</script>
+</body>
+
 </html>
